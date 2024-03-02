@@ -6,7 +6,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  create(body?:any):string{
+  create(body?: any): string {
     console.log(body);
     return JSON.stringify(body);
   }

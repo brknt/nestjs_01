@@ -11,26 +11,23 @@ import { v4 as uuidv4 } from 'uuid';
 export class UserService {
     private readonly logger: Logger = new Logger(this.constructor.name);
 
-    
-    constructor( 
+
+    constructor(
         @InjectRepository(User)
-        private readonly userRepository: Repository <User>){}
+        private readonly userRepository: Repository<User>) { }
 
 
-    activeUsers() {
-        return [
-            { id: 1, name: "berkant" },
-            { id: 2, name: "şaban" }
-        ];
+    async activeUsers() {
+       return await this.userRepository.find();
     }
     async create(createUserDto: CreateUserDto) {
         const newUser = await this.userRepository.create();
         newUser.id = uuidv4();
-        newUser.email=createUserDto.email;
-        newUser.name=createUserDto.name;
+        newUser.email = createUserDto.email;
+        newUser.name = createUserDto.name;
 
         this.logger.warn(JSON.stringify(newUser));
-        
+
         return await this.userRepository.save(newUser);
     }
 }
