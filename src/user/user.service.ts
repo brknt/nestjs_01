@@ -11,6 +11,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UserService {
 
+
     private readonly logger: Logger = new Logger(this.constructor.name);
 
 
@@ -19,9 +20,11 @@ export class UserService {
         private readonly userRepository: Repository<User>) { }
 
 
+    
     async activeUsers() {
         return await this.userRepository.find();
     }
+
     async create(createUserDto: CreateUserDto) {
         const newUser = await this.userRepository.create();
         newUser.id = uuidv4();
@@ -50,6 +53,22 @@ export class UserService {
 
         return await this.userRepository.save(user);
     }
+
+    async delete(id: string) {
+        const user = await this.userRepository.findOne({
+            where:{
+                id:id
+            }
+        });
+
+        if(user){
+            return await this.userRepository.softDelete(id); 
+        }else{
+
+        }
+    }
+
+
 }
 
 
