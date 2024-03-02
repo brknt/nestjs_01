@@ -4,11 +4,13 @@ import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 
 
 @Injectable()
 export class UserService {
+
     private readonly logger: Logger = new Logger(this.constructor.name);
 
 
@@ -18,7 +20,7 @@ export class UserService {
 
 
     async activeUsers() {
-       return await this.userRepository.find();
+        return await this.userRepository.find();
     }
     async create(createUserDto: CreateUserDto) {
         const newUser = await this.userRepository.create();
@@ -29,6 +31,24 @@ export class UserService {
         this.logger.warn(JSON.stringify(newUser));
 
         return await this.userRepository.save(newUser);
+    }
+
+    async update(id: string, updateUserDto: UpdateUserDto) {
+        const user = await this.userRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        if (user) {
+            user.name = updateUserDto.name;
+            user.email = updateUserDto.email;
+
+        } else {
+
+        }
+
+        return await this.userRepository.save(user);
     }
 }
 
