@@ -58,6 +58,16 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+
+
+## For Mysql
+
+Create .env file and add mysql information in docker-compose.yml
+then:
+```bash
+# run
+$ docker compose up
+```
 ## For swagger
 
 ```bash
