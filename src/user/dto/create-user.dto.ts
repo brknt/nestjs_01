@@ -13,12 +13,15 @@ export class CreateUserDto {
   })
   name: string;
 
+
   @ApiProperty({
     example: 'brknt.gns@hotmail.com',
   })
   @IsEmail()
   email: string;
 
+
+  
   @ApiProperty({
     example: '1996-06-21'
   })

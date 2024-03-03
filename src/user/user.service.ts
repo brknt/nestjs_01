@@ -11,9 +11,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UserService {
 
-
-
-
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>) { }
@@ -46,6 +43,7 @@ export class UserService {
         if (user) {
             user.name = updateUserDto.name;
             user.email = updateUserDto.email;
+            user.birthDay = updateUserDto.birthday;
 
         } else {
 
