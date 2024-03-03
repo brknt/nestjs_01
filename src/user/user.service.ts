@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +12,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserService {
 
 
-    private readonly logger: Logger = new Logger(this.constructor.name);
 
 
     constructor(
@@ -30,8 +29,9 @@ export class UserService {
         newUser.id = uuidv4();
         newUser.email = createUserDto.email;
         newUser.name = createUserDto.name;
+        newUser.birthDay = createUserDto.birthday;
 
-        this.logger.warn(JSON.stringify(newUser));
+        
 
         return await this.userRepository.save(newUser);
     }

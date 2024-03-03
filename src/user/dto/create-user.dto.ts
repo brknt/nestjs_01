@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsDate, IsDateString, IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsAdult } from "./user.validation";
 
 
 
@@ -17,5 +18,12 @@ export class CreateUserDto {
   })
   @IsEmail()
   email: string;
+
+  @ApiProperty({
+    example: '1996-06-21'
+  })
+  @IsDateString()
+  @IsAdult({message:'You must be over 18 years old to register!'})
+  birthday: Date;
 
 }

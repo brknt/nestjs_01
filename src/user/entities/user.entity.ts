@@ -16,6 +16,10 @@ export class User {
     @Column()
     email: string;
 
+
+    @Column()
+    birthDay: Date;
+
     @CreateDateColumn()
     createdAt!: Date;
 
@@ -23,6 +27,6 @@ export class User {
     updatedAt!: Date;
 
     @DeleteDateColumn()
-    deletedAAt!: Date;
+    deletedAt!: Date;
 
 }
