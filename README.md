@@ -61,7 +61,7 @@ $ npm run test:cov
 ## For swagger
 
 ```bash
-# run
+# url swagger
 localhost:3000/docs
 ```
 

@@ -1,11 +1,9 @@
 
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
-
+import { MainEntity } from "src/entities/main.entity";
+import { Column, Entity } from "typeorm";
 @Entity()
-export class User {
-    @Column()
-    @PrimaryColumn()
-    id: string;
+export class User extends MainEntity {
+
 
     @Column()
     name: string;
@@ -16,13 +14,6 @@ export class User {
     @Column()
     birthDay: Date;
 
-    @CreateDateColumn()
-    createdAt!: Date;
 
-    @UpdateDateColumn()
-    updatedAt!: Date;
-
-    @DeleteDateColumn()
-    deletedAt!: Date;
 
 }
